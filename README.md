@@ -20,6 +20,7 @@ A complete frontend-only Connect Four game with an expressive AI opponent, compr
 
 ```bash
 npm install
+cd...../connect-four Work yourway to the Connect-four directory 
 npm run dev
 ```
 
