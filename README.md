@@ -1,9 +1,5 @@
 # Connect-Four-Game-
-A cool project I worked on during my vibe coding class which as its name suggests is a recreation of the connect four game. 
-
-# Connect Four - Neo-Brutalist Edition
-
-A complete frontend-only Connect Four game with an expressive AI opponent, comprehensive game history, and an in-app console. Built with vanilla JavaScript (ES modules) and a striking Neo-Brutalist aesthetic.
+A cool project I worked on during my vibe coding class which as its name suggests, is a recreation of the connect four game. As you all will see its a complete frontend-only Connect Four game with an expressive AI opponent, comprehensive game history, and an in-app console. Built with vanilla JavaScript (ES modules) and a striking Neo-Brutalist aesthetic.
 
 ## Features
 
