@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#00b4d8">
+    <title>Connect Four - Neo-Brutalist Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="title">CONNECT FOUR</h1>
+            <div class="header-controls">
+                <button id="btn-new-game" class="btn btn-primary" aria-label="Start a new game">New Game</button>
+                <button id="btn-toggle-console" class="btn btn-secondary" aria-label="Toggle console">Show Console</button>
+                <button id="btn-toggle-history" class="btn btn-secondary" aria-label="Toggle game history">History</button>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main class="main-content">
+            <!-- Left Panel: AI Face & Controls -->
+            <aside class="side-panel left-panel">
+                <div id="ai-face-box" class="ai-face-box" role="region" aria-live="polite" aria-label="AI opponent status">
+                    <div id="ai-face" class="ai-face">😐</div>
+                    <div id="ai-text" class="ai-text">"Let's play."</div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="btn-undo" class="btn btn-small" disabled aria-label="Undo last move">Undo</button>
+                    <div class="difficulty-selector">
+                        <label for="difficulty-select">Difficulty:</label>
+                        <select id="difficulty-select" class="select" aria-label="AI difficulty level">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="accessibility-controls">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="colorblind-mode" aria-label="Enable colorblind mode">
+                            <span>Colorblind Mode</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="high-contrast-mode" aria-label="Enable high contrast mode">
+                            <span>High Contrast</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="dark-mode" aria-label="Enable dark mode">
+                            <span>Dark Mode</span>
+                        </label>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center: Game Board -->
+            <section class="board-container" role="main" aria-label="Connect Four game board">
+                <div id="board-svg-container" class="board-svg-container" tabindex="0" aria-label="Game board. Use arrow keys to navigate columns, Enter or Space to drop a disc.">
+                    <!-- SVG board will be inserted here by ui.js -->
+                </div>
+                <div id="game-status" class="game-status" aria-live="polite"></div>
+            </section>
+
+            <!-- Right Panel: History -->
+            <aside class="side-panel right-panel" id="history-panel" style="display: none;">
+                <div class="panel-header">
+                    <h2 class="panel-title">Game History</h2>
+                    <button id="btn-close-history" class="btn-close" aria-label="Close history panel">✕</button>
+                </div>
+                <div id="history-list" class="history-list">
+                    <!-- History items will be inserted here -->
+                </div>
+                <button id="btn-clear-history" class="btn btn-small btn-danger">Clear History</button>
+            </aside>
+        </main>
+
+        <!-- Console Panel -->
+        <aside id="console-panel" class="console-panel" style="display: none;" role="log" aria-live="polite" aria-label="Game event console">
+            <div class="console-header">
+                <h2 class="panel-title">Console</h2>
+                <div class="console-controls">
+                    <select id="console-filter" class="select select-small" aria-label="Filter console messages by type">
+                        <option value="all">All</option>
+                        <option value="info">Info</option>
+                        <option value="ai">AI</option>
+                        <option value="player">Player</option>
+                        <option value="success">Success</option>
+                        <option value="warning">Warning</option>
+                        <option value="error">Error</option>
+                    </select>
+                    <button id="btn-clear-console" class="btn btn-small">Clear</button>
+                    <button id="btn-export-logs" class="btn btn-small">Export Logs</button>
+                </div>
+            </div>
+            <div id="console-content" class="console-content">
+                <!-- Console entries will be inserted here -->
+            </div>
+        </aside>
+
+        <!-- New Game Modal -->
+        <div id="new-game-modal" class="modal-overlay" style="display: none;" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+            <div class="modal-content">
+                <h2 id="modal-title" class="modal-title">New Game</h2>
+                <form id="new-game-form" class="new-game-form">
+                    <div class="form-group">
+                        <label for="game-mode">Game Mode:</label>
+                        <select id="game-mode" class="select" required aria-label="Select game mode">
+                            <option value="ai" selected>Human vs AI</option>
+                            <option value="human">Human vs Human</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="player-order">Who Starts:</label>
+                        <select id="player-order" class="select" required aria-label="Select who starts first">
+                            <option value="player" selected>Player First</option>
+                            <option value="ai">AI First</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-difficulty">AI Difficulty:</label>
+                        <select id="modal-difficulty" class="select" required aria-label="Select AI difficulty">
+                            <option value="easy">Easy</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="sound-effects" aria-label="Enable sound effects">
+                            <span>Sound Effects</span>
+                        </label>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Start</button>
+                        <button type="button" id="btn-cancel-modal" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Replay Modal -->
+        <div id="replay-modal" class="modal-overlay" style="display: none;" role="dialog" aria-labelledby="replay-title" aria-modal="true">
+            <div class="modal-content modal-large">
+                <h2 id="replay-title" class="modal-title">Replay Game</h2>
+                <div id="replay-board-container" class="replay-board-container">
+                    <!-- Replay board will be inserted here -->
+                </div>
+                <div class="replay-controls">
+                    <button id="btn-replay-prev" class="btn btn-small" aria-label="Previous move">◀ Prev</button>
+                    <button id="btn-replay-play" class="btn btn-small" aria-label="Play or pause replay">▶ Play</button>
+                    <button id="btn-replay-next" class="btn btn-small" aria-label="Next move">Next ▶</button>
+                    <div class="replay-speed">
+                        <label for="replay-speed">Speed:</label>
+                        <input type="range" id="replay-speed" min="0.2" max="2" step="0.2" value="1" aria-label="Replay speed">
+                        <span id="replay-speed-value">1.0×</span>
+                    </div>
+                    <button id="btn-close-replay" class="btn btn-secondary">Close</button>
+                </div>
+                <div id="replay-timeline" class="replay-timeline">
+                    <!-- Timeline will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="src/app.js"></script>
+</body>
+</html>
+

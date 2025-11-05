@@ -1,0 +1,21 @@
+{
+  "name": "connect-four",
+  "version": "1.0.0",
+  "description": "A Neo-Brutalist Connect Four game with AI opponent and game history",
+  "type": "module",
+  "scripts": {
+    "dev": "npx http-server ./frontend -p 5173 -c-1 -a 0.0.0.0",
+    "dev:awake": "systemd-inhibit --what=sleep:idle --who='Connect Four' --why='Server running' npm run dev",
+    "test": "vitest",
+    "test:ui": "vitest --ui"
+  },
+  "keywords": ["connect-four", "game", "ai", "vanilla-js"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^1.0.0",
+    "@vitest/ui": "^1.0.0",
+    "jsdom": "^23.0.0"
+  }
+}
+

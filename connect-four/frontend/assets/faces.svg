@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400" style="display: none;">
+  <!-- AI Face SVG assets (optional fallback) -->
+  <!-- This file can be used for custom face graphics if emojis are not supported -->
+  
+  <defs>
+    <style>
+      .face-neutral { fill: #f2f2f2; }
+      .face-thinking { fill: #e0e0e0; }
+      .face-happy { fill: #ffd60a; }
+      .face-frustrated { fill: #ff6b6b; }
+      .face-smug { fill: #4ecdc4; }
+      .face-sad { fill: #95a5a6; }
+      .face-draw { fill: #bdc3c7; }
+    </style>
+  </defs>
+  
+  <!-- Note: Emojis are used directly in the app, this SVG is a fallback -->
+  <!-- You can replace emoji rendering with SVG paths here if needed -->
+  
+</svg>
+
