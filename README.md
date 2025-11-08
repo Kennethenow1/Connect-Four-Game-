@@ -1,6 +1,11 @@
 # Connect-Four-Game-
 A cool project I worked on during my vibe coding class which as its name suggests, is a recreation of the connect four game. As you all will see its a complete frontend-only Connect Four game with an expressive AI opponent, comprehensive game history, and an in-app console. Built with vanilla JavaScript (ES modules) and a striking Neo-Brutalist aesthetic.
 
+<img width="1853" height="968" alt="Screenshot from 2025-11-04 21-34-06" src="https://github.com/user-attachments/assets/c67ad1f5-4065-4201-9e09-69ad5e06a27e" />
+<img width="1853" height="968" alt="Screenshot from 2025-11-04 21-35-25" src="https://github.com/user-attachments/assets/8db619b8-b08c-448c-976f-2afa309d89ab" />
+<img width="1853" height="968" alt="Screenshot from 2025-11-04 21-35-41" src="https://github.com/user-attachments/assets/82a5a9ad-a3fa-4603-82e2-1d1256d4c7c6" />
+<img width="1853" height="968" alt="Screenshot from 2025-11-04 21-35-52" src="https://github.com/user-attachments/assets/d6e5bc38-46b1-4f1a-aa41-147b20c5825b" />
+
 ## Features
 
 - **Neo-Brutalist UI**: Bold black outlines, hard shadows, and vibrant colors on an off-white background
